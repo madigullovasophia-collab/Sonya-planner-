@@ -8,3 +8,10 @@
 
 
 .journal-pages-bar{display:flex;align-items:center;gap:8px;margin:14px 0 5px;min-width:0}.journal-page-tabs{display:flex;gap:6px;overflow-x:auto;flex:1;min-width:0;padding:3px 1px 7px;scrollbar-width:thin}.journal-page-tab{flex:0 0 auto;border:1px solid #ead9e0;border-radius:11px;background:#fff;color:#987789;padding:8px 11px;font-size:10px;white-space:nowrap}.journal-page-tab.selected{background:#f3e3ea;border-color:#d4a6b8;color:#9b637c}.add-journal-page{flex:0 0 auto;border:1px dashed #d5aabc;border-radius:11px;background:#fff8fb;color:#a36f85;padding:8px 10px;font-size:10px;white-space:nowrap}.add-journal-page:active,.journal-page-tab:active{transform:scale(.98)}
+
+/* Mobile layout fixes: keep date/category controls separate and journal page actions tidy. */
+@media(max-width:480px){.form-grid{grid-template-columns:minmax(0,1fr);gap:11px}.form-grid label{width:100%;min-width:0}.add-form input,.add-form select{display:block;width:100%;min-width:0}.journal-pages-bar{display:grid;grid-template-columns:1fr 1fr;gap:7px}.journal-page-tabs{grid-column:1/-1;width:100%;max-width:100%}.add-journal-page,.delete-journal-page{width:100%;min-width:0;white-space:normal;min-height:36px}.delete-journal-page{font-size:10px}}
+.delete-journal-page{flex:0 0 auto;border:1px solid #ead9e0;border-radius:11px;background:#fff;color:#a77b8d;padding:8px 10px;font-size:10px;white-space:nowrap}
+.delete-journal-page:active{background:#f8e9ef}
+.sticker-controls{left:50%;right:auto;top:-32px;transform:translateX(-50%);z-index:6;white-space:nowrap}
+.sticker-controls button{min-width:27px;min-height:27px;padding:5px 7px}
