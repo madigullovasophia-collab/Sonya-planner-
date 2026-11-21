@@ -1,0 +1,11 @@
+{
+  "name": "Мой ежедневник",
+  "short_name": "Ежедневник",
+  "description": "Личный ежедневник: планы, журнал, настроение и статистика",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8e9ed",
+  "theme_color": "#f8e9ed"
+}

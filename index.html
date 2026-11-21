@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8e9ed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Мой ежедневник">
+  <meta name="description" content="Личный ежедневник: планы, заметки, настроение и статистика.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>Мой ежедневник</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">MY LITTLE SPACE</p><h1>Мой ежедневник <span>♡</span></h1></div>
+      <button class="icon-button" id="settings-open" aria-label="Настройки">⚙</button>
+    </header>
+
+    <section id="home-view" class="view active">
+      <section class="welcome-card">
+        <div class="welcome-copy"><p class="eyebrow" id="home-date"></p><h2 id="welcome-greeting">Привет!<br><em>Рада видеть тебя</em></h2><p id="welcome-message">Пусть сегодня будет немного больше спокойствия и приятных моментов.</p></div>
+        <div class="welcome-bow" aria-hidden="true">🎀</div>
+        <div class="welcome-bottom"><span>маленькие шаги тоже важны</span><span>✧</span></div>
+      </section>
+      <section class="panel home-mood">
+        <div class="section-title"><div><p class="eyebrow">КАК ТЫ СЕГОДНЯ?</p><h2>Моё настроение</h2></div><span class="soft-flower">✿</span></div>
+        <div class="mood-options" id="home-mood-options"></div>
+        <p class="saved-hint" id="mood-hint">Можно выбрать один смайлик или пропустить этот день.</p>
+      </section>
+      <section class="panel home-overview">
+        <div class="section-title"><div><p class="eyebrow">ТВОЙ ДЕНЬ</p><h2>Небольшой план</h2></div><button class="text-button" data-go="plan">Все задачи →</button></div>
+        <div id="home-task-preview" class="preview-list"></div>
+        <div class="home-progress"><div class="progress-line"><span id="home-progress-fill"></span></div><div><strong id="home-progress-text">0%</strong><span> выполнено сегодня</span></div></div>
+      </section>
+      <section class="home-shortcuts">
+        <button class="shortcut lavender" data-go="journal"><span>✎</span><strong>Мой журнал</strong><small>Страницы по месяцам</small></button>
+        <button class="shortcut sage" data-go="stats"><span>↗</span><strong>Моя статистика</strong><small>Маленькие достижения</small></button>
+      </section>
+      <p class="home-quote">«Необязательно успевать всё. Главное — не забывать о себе»</p>
+    </section>
+
+    <section id="plan-view" class="view">
+      <div class="page-heading"><p class="eyebrow">ТВОИ ДЕЛА</p><h2>Планы</h2><p>Собирай день по маленьким шагам.</p></div>
+      <div class="subtabs" id="plan-tabs"><button class="selected" data-plan-tab="today">Сегодня</button><button data-plan-tab="week">Неделя</button><button data-plan-tab="done">Выполнено</button></div>
+      <section class="panel task-panel"><div class="section-title"><div><p class="eyebrow" id="plan-eyebrow">ТВОЙ ДЕНЬ</p><h2 id="plan-title">Сегодня</h2></div><span class="soft-flower">♡</span></div>
+        <div class="category-filter" id="category-filter"></div>
+        <div id="task-list" class="task-list"></div>
+        <form id="add-form" class="add-form"><label for="task-input">Добавить задачу</label><input id="task-input" maxlength="120" placeholder="Что хочешь сделать?" autocomplete="off" required><div class="form-grid"><label>Дата<input id="task-date" type="date" required></label><label>Категория<select id="task-category"><option>Образование</option><option>Работа</option><option>Рутина</option><option>Личное</option><option>Другое</option></select></label></div><button class="primary-button" type="submit">＋ Добавить задачу</button></form>
+      </section>
+    </section>
+
+    <section id="journal-view" class="view">
+      <div class="page-heading"><p class="eyebrow">ЛИЧНОЕ ПРОСТРАНСТВО</p><h2>Мой журнал</h2><p>Сохраняй мысли, идеи и красивые моменты.</p></div>
+      <section class="panel journal-panel"><div class="month-switch"><button id="month-prev" aria-label="Предыдущий месяц">‹</button><div><p class="eyebrow">МОЯ СТРАНИЦА</p><h2 id="journal-month-title"></h2></div><button id="month-next" aria-label="Следующий месяц">›</button></div>
+        <div class="journal-pages-bar"><div class="journal-page-tabs" id="journal-page-tabs" aria-label="Страницы журнала"></div><button class="add-journal-page" id="add-journal-page" type="button">＋ Новая страница</button></div>
+        <div class="paper-tools"><label class="select-label">Фон <select id="paper-style"><option value="paper">Молочная бумага</option><option value="grid">Клетка</option><option value="dots">Точки</option><option value="blush">Розовая бумага</option></select></label><button class="text-button" id="sticker-toggle">＋ Декор</button></div>
+        <div class="journal-paper" id="journal-paper"><div class="paper-date" id="paper-date"></div><textarea id="journal-note" placeholder="Эта страница принадлежит тебе...\nЗаписывай планы, мысли, идеи или просто оставляй здесь красивые воспоминания."></textarea><div class="sticker-layer" id="sticker-layer"></div></div>
+        <div class="sticker-drawer" id="sticker-drawer" hidden><div class="drawer-heading"><strong>Маленькие украшения</strong><button id="sticker-close" aria-label="Закрыть">×</button></div><p class="eyebrow">ГОТОВЫЕ НАБОРЫ</p><div class="sticker-sets"><button data-set="coquette">♡ Coquette</button><button data-set="botanical">✿ Botanical</button><button data-set="vintage">✧ Vintage</button></div><p class="eyebrow">ДОБАВИТЬ ОТДЕЛЬНО</p><div class="sticker-library" id="sticker-library"></div><label class="upload-sticker">＋ Загрузить свою наклейку<input type="file" id="sticker-upload" accept="image/*"></label><p class="tiny-help">Нажми на наклейку, чтобы добавить её. Перетаскивай, меняй размер и поворачивай.</p></div>
+        <p class="journal-hint">Наклейки можно перемещать по странице. Нажми на выбранную наклейку, чтобы увидеть настройки.</p>
+      </section>
+    </section>
+
+    <section id="stats-view" class="view">
+      <div class="page-heading"><p class="eyebrow">ТВОЙ ПУТЬ</p><h2>Мой прогресс</h2><p>Статистика помогает замечать закономерности, а не оценивать себя.</p></div>
+      <section class="panel stats-panel"><div class="period-switch" id="stats-period"><button class="selected" data-period="month">Месяц</button><button data-period="week">Неделя</button><button data-period="all">Всё время</button></div><div class="stats-range" id="stats-range"></div>
+        <div class="metric-grid"><article class="metric pink"><span>Выполнено задач</span><strong id="metric-done">0</strong><small>всего завершено</small></article><article class="metric lilac"><span>Процент выполнения</span><strong id="metric-rate">0%</strong><small>от запланированных</small></article><article class="metric beige"><span>Запланировано</span><strong id="metric-total">0</strong><small>за выбранный период</small></article><article class="metric sage"><span>Перенесено</span><strong id="metric-moved">0</strong><small>изменений даты</small></article></div>
+        <div class="chart-block"><div class="chart-heading"><h3>Выполнение по неделям</h3><span>за выбранный период</span></div><div id="weekly-chart" class="bar-chart"></div></div>
+        <div class="chart-block"><div class="chart-heading"><h3>Задачи по категориям</h3><span>выполненные</span></div><div id="category-chart" class="category-chart"></div></div>
+        <div class="chart-block"><div class="chart-heading"><h3>История настроения</h3><span>по дням</span></div><div id="mood-history" class="mood-history"></div><div id="mood-distribution" class="mood-distribution"></div></div>
+        <div class="monthly-report"><p class="eyebrow">ТВОЙ МЕСЯЦ</p><h3 id="report-title">Итоги месяца</h3><p id="monthly-summary"></p><div class="report-stats" id="report-stats"></div></div>
+      </section>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Главная навигация"><button class="nav-item active" data-view="home"><span>⌂</span><small>Главная</small></button><button class="nav-item" data-view="plan"><span>☷</span><small>План</small></button><button class="nav-item" data-view="journal"><span>♡</span><small>Журнал</small></button><button class="nav-item" data-view="stats"><span>↗</span><small>Статистика</small></button></nav>
+  </main>
+
+  <dialog id="profile-dialog" class="settings-dialog profile-dialog"><form id="profile-form"><div class="profile-bow">🎀</div><p class="eyebrow">ТВОЁ ЛИЧНОЕ ПРОСТРАНСТВО</p><h2 id="profile-title">Как тебя зовут?</h2><p id="profile-description">Напиши своё имя — и ежедневник будет обращаться к тебе лично.</p><label class="profile-label" for="profile-name">Твоё имя</label><input id="profile-name" maxlength="32" autocomplete="given-name" placeholder="Например, Софья" required><button class="primary-button" type="submit">Продолжить ♡</button><button class="text-button profile-cancel" id="profile-cancel" type="button" hidden>Отмена</button></form></dialog>
+  <dialog id="settings-dialog" class="settings-dialog"><form method="dialog"><div class="drawer-heading"><h2>Настройки и данные</h2><button class="icon-button" aria-label="Закрыть">×</button></div><div class="profile-settings"><div><p class="eyebrow">ТВОЙ ПРОФИЛЬ</p><strong id="settings-profile-name">Имя не указано</strong></div><button class="text-button" id="change-profile" type="button">Изменить имя</button></div><p>Сохрани резервную копию, чтобы не потерять задачи, страницы журнала и украшения.</p><button class="primary-button" id="export-data" type="button">Скачать резервную копию</button><label class="upload-sticker import-label">Восстановить из копии<input type="file" id="import-data" accept="application/json"></label><p class="tiny-help">Данные хранятся в этом браузере на устройстве. Очистка данных Safari может удалить их.</p></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
